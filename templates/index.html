@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KrishiMitra — Crop guidance, made clearer</title>
+  <meta name="description" content="A cautious AI-assisted crop observation and follow-up helper.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">K</div>
+    <div>
+      <div class="brand-name">KrishiMitra</div>
+      <div class="brand-subtitle">Your crop observation companion</div>
+    </div>
+    <span class="pill">Hackathon MVP</span>
+  </header>
+
+  <main class="layout">
+    <section class="hero">
+      <p class="eyebrow">PRACTICAL GUIDANCE · LOCAL LANGUAGE</p>
+      <h1>A clearer next step<br><span>for your crop.</span></h1>
+      <p class="hero-copy">Describe what you see. Get a simple observation plan, safe next steps, and guidance on when to ask an agricultural expert.</p>
+      <div class="trust-note"><span>✓</span> No guaranteed diagnosis. No made-up weather or market data.</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">STEP 1</p><h2>Tell us about your crop</h2></div>
+        <span class="leaf-icon">✳</span>
+      </div>
+      <form id="advisory-form">
+        <div class="field-grid">
+          <label>Crop
+            <select name="crop" required>
+              <option value="">Choose crop</option>
+              <option>Rice</option><option>Wheat</option><option>Cotton</option>
+              <option>Soybean</option><option>Tomato</option><option>Chilli</option>
+              <option>Onion</option><option>Sugarcane</option><option>Other</option>
+            </select>
+          </label>
+          <label>Location (village/district)
+            <input name="location" maxlength="120" placeholder="e.g., Nagpur district" required>
+          </label>
+          <label>Growth stage
+            <select name="growth_stage" required>
+              <option value="">Choose stage</option>
+              <option>Seedling</option><option>Vegetative growth</option>
+              <option>Flowering</option><option>Fruit / grain development</option>
+              <option>Near harvest</option><option>Not sure</option>
+            </select>
+          </label>
+          <label>Preferred language
+            <select name="language" required>
+              <option>English</option><option>Hindi</option><option>Marathi</option>
+            </select>
+          </label>
+        </div>
+        <label>What are you noticing?
+          <textarea name="symptoms" rows="4" maxlength="1500" placeholder="Describe leaf colour, spots, insects, wilting, how many plants are affected, and when it started..." required></textarea>
+          <span class="helper">Tip: describe observations, not just a suspected disease.</span>
+        </label>
+        <button id="submit-btn" type="submit">Create my crop plan <span>→</span></button>
+        <p class="privacy-note">Please do not enter personal contact details. Your report is saved for the demo history.</p>
+      </form>
+    </section>
+
+    <section id="result-panel" class="panel result-panel hidden" aria-live="polite">
+      <div class="panel-heading">
+        <div><p class="eyebrow">STEP 2</p><h2>Your crop plan</h2></div>
+        <span class="result-badge">Advisory</span>
+      </div>
+      <div id="result-meta" class="result-meta"></div>
+      <pre id="advisory-text" class="advisory-text"></pre>
+      <div class="feedback">
+        <h3>Was this useful?</h3>
+        <div class="feedback-row">
+          <select id="rating" aria-label="Rating">
+            <option value="5">5 — Very useful</option><option value="4">4 — Useful</option>
+            <option value="3">3 — Somewhat useful</option><option value="2">2 — Not very useful</option>
+            <option value="1">1 — Not useful</option>
+          </select>
+          <input id="feedback-comment" maxlength="500" placeholder="Optional feedback">
+          <button id="feedback-btn" type="button" class="secondary">Send feedback</button>
+        </div>
+        <p id="feedback-status" class="helper"></p>
+      </div>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">STEP 3</p><h2>Recent crop plans</h2></div>
+        <button id="refresh-history" type="button" class="text-button">Refresh ↻</button>
+      </div>
+      <div id="history-list" class="history-list"><p class="helper">Loading saved plans…</p></div>
+    </section>
+
+    <section class="disclaimer">
+      <strong>Use responsibly.</strong> KrishiMitra provides general information, not a verified diagnosis or a substitute for a local agricultural expert. Confirm important decisions with a qualified agricultural professional and follow official local guidance and product labels.
+    </section>
+  </main>
+  <footer>Built for the GeeksforGeeks × Google Cloud Hack Sprint · KrishiMitra</footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
